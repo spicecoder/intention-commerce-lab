@@ -1,0 +1,28 @@
+server:
+  port: ${PORT:8081}
+spring:
+  application:
+    name: inventory-spring
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:inventory;DB_CLOSE_DELAY=-1}
+    username: ${DATABASE_USERNAME:sa}
+    password: ${DATABASE_PASSWORD:}
+    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+inventory:
+  failure-mode: ${INVENTORY_FAILURE_MODE:none}
+  failure-delay-ms: ${INVENTORY_FAILURE_DELAY_MS:7000}

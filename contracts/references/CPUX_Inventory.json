@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "commerce-browser-reference/0.1",
+  "status": "development-reference-not-go-runtime-manifest",
+  "artifactType": "browser-reference-cpux",
+  "appId": "APP_CommerceBrowser",
+  "intentionSpaceId": "IS_CommerceReference",
+  "cpuxId": "CPUX_Inventory",
+  "fieldId": "FIELD_Inventory",
+  "members": [
+    "IC_InventoryRead",
+    "IC_InventoryReserve",
+    "IC_InventoryCommit",
+    "IC_InventoryReceive"
+  ],
+  "startPolicy": "lazy-on-admitted-signal",
+  "scheduling": "exact-ic-admission-with-durable-claim",
+  "fieldPolicy": {
+    "ingress": "fifo",
+    "extraction": "copy",
+    "repeat": "new-admitted-occurrence-only"
+  },
+  "completion": "explicit-member-terminal-and-no-pending-work",
+  "ics": [
+    {
+      "icId": "IC_InventoryRead",
+      "cpuxId": "CPUX_Inventory",
+      "dnId": "DN_InventoryRead",
+      "holder": {
+        "input": "S_CustomerContext",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_StockAssessed",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_CustomerContextAvailable",
+        "requiredPulses": [
+          "customer_id",
+          "customer_profile"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_CustomerContext"
+      }
+    },
+    {
+      "icId": "IC_InventoryReserve",
+      "cpuxId": "CPUX_Inventory",
+      "dnId": "DN_InventoryReserve",
+      "holder": {
+        "input": "S_ReservationRequested",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_ReservationDecision",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_StockReservationRequested",
+        "requiredPulses": [
+          "order_id",
+          "customer_id",
+          "sku",
+          "quantity",
+          "unit_price_cents",
+          "total_cents",
+          "currency",
+          "shipping_address"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_ReservationRequested"
+      }
+    },
+    {
+      "icId": "IC_InventoryCommit",
+      "cpuxId": "CPUX_Inventory",
+      "dnId": "DN_InventoryCommit",
+      "holder": {
+        "input": "S_DispatchDecision",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_StockCommitted",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_ShipmentDispatchDecided",
+        "requiredPulses": [
+          "order_id",
+          "customer_id",
+          "sku",
+          "quantity",
+          "unit_price_cents",
+          "total_cents",
+          "currency",
+          "shipping_address",
+          "reservation_id",
+          "shipment_id",
+          "dispatch_status",
+          "tracking_id",
+          "failure_reason"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_DispatchDecision"
+      }
+    },
+    {
+      "icId": "IC_InventoryReceive",
+      "cpuxId": "CPUX_Inventory",
+      "dnId": "DN_InventoryReceive",
+      "holder": {
+        "input": "S_ReceiveStock",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_StockReceiptRecorded",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_StockReceiptRequested",
+        "requiredPulses": [
+          "sku",
+          "receipt_id",
+          "receipt_quantity"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_ReceiveStock"
+      }
+    }
+  ]
+}
