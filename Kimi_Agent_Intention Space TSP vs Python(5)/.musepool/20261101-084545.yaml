@@ -1,0 +1,276 @@
+items:
+- short_id: HT3FGrfW
+  seed: |
+    # Narrative
+
+    A collaborative editorial report unraveling the state of design today. The narrative unfolds through thematic sections — long-form essays exploring industry topics. Each section combines survey data, designer interviews, interactive polls, and curated visual essays. The experience is magazine-like but native to the web: scroll-driven storytelling with embedded interactive moments (voting, drawing canvas, flip cards) that break up reading rhythm.
+
+    # Tech Stack
+
+    Preact (lightweight React alternative) with custom IIFE library. GSAP for animations. Firebase for real-time poll data. PixiJS for the drawing canvas and cyclone WebGL effects. Styled-components via goober (CSS-in-JS). Prismic as CMS for content.
+
+    # Layout
+
+    Asymmetric editorial layout with generous whitespace. Content flows in a single column but with dramatic scale shifts — oversized section titles, full-bleed imagery interspersed with narrow text columns. Navigation is minimal: fixed hamburger menu top-right, scroll indicator at bottom. Sections alternate between dense text blocks and interactive full-screen experiences. Mobile breakpoints at 768px.
+
+    # Typography
+
+    Dual-font system: ABC Marist (serif, Book and Book Italic) for body and editorial voice; ABC Simon Mono (monospace) for UI, labels, captions, and meta text. Heavy use of uppercase for navigation, labels, and section headers. Tight tracking on mono text. Fluid type scale with dramatic size contrasts between section headers and body copy.
+
+    # Color
+
+    Warm off-white background (#f2f5f0) with near-black text (#231f20). Single vibrant accent: electric blue (#1400ff) used for interactive elements, links, and logo. Subtle warm grays for secondary surfaces (rgba(35, 31, 32, 0.05)). High contrast maintained throughout. No gradients — flat color fields.
+
+    # Imagery
+
+    Mixed-media approach: photography (designer portraits, cultural references), custom SVG illustrations (themed decorative graphics), and generative/memetic imagery. Images often full-bleed or with minimal framing. Some sections use video backgrounds. Visual essays juxtapose historical design references with contemporary work.
+
+    # Components
+
+    Poll widgets: split-button voting with real-time percentage bars (CSS custom properties --a-bar/--b-bar updating via GSAP). Flip cards: 3D CSS transforms (rotateY 180deg) comparing homage vs copycat design pairs. Drawing canvas: full-screen PixiJS stage with custom cursor. Navigation: minimal hamburger, scroll indicator with arrow icon. All buttons: 1px black border, transparent background, uppercase mono text.
+
+    # Motion
+
+    Scroll-driven narrative reveals. GSAP-powered entrance animations (opacity + y-offset staggers). Interactive cursor-following tooltips for polls. Smooth page transitions. Canvas animations: real-time drawing sync via Firebase, cyclone particle effects. Card flips with preserve-3d. Loading states use skeleton placeholders.
+
+    # Algorithms
+
+    Real-time collaborative drawing canvas using PixiJS Graphics API with Firebase backend for line synchronization. Poll aggregation with live percentage calculations. Cyclone simulation (particle system) in WebGL for one interactive section.
+
+    # Material
+
+    Flat matte surfaces with subtle depth via soft shadows (rgba(0,0,0,0.2) 20px 20px 10px on cards). Backdrop-filter blur used for overlay UI (4px-64px radius). No glassmorphism — blur is functional, not decorative. Clean edges, no border-radius on main containers (cards use 6px radius).
+
+    # Craft
+
+    Custom cursor states (drawing.png, cyclone.png) for interactive sections. Careful focus states with visible outlines. Scrollbar styling minimal. Image loading with aspect-ratio preservation to prevent layout shift. Custom emoji icons for section markers (sewing needle, message bubble, links). Print-friendly considerations via @media print.
+
+    # Coherence
+
+    The warm off-white and electric blue create a distinctive editorial atmosphere — serious but not sterile. The mono/serif dual system reinforces the split between data (objective) and narrative (subjective). Interactive elements are embedded as "breaks" in reading flow, making the survey feel participatory rather than extractive.
+- short_id: phImObsG
+  seed: |
+    # Narrative
+
+    A product landing page for a physical screen-time management device — a stainless steel disc that blocks apps when tapped on a phone. The narrative flows from problem (screen addiction) to solution (the device + companion app), through social proof (testimonials), to technical details (specs grid), and ends with a product hero shot. The tone is calm, intentional, and premium — positioning the device as a beautiful object rather than a tech gadget.
+
+    # Tech Stack
+
+    Next.js with React, Tailwind CSS for styling, GSAP for scroll-driven animations. Custom CSS variables for theming (`--ease-custom`, `--container-main`, `--text-h2`). Self-hosted Suisse Intl font family (5 weights: Book, Book Italic, Medium, Semibold, Bold).
+
+    # Layout
+
+    Full-bleed hero with centered product video, transitioning to alternating white and dark sections. Content is contained within `max-w-[var(--container-main)]` (~1200px). Asymmetric two-column layouts for feature explanations (text left, phone mockup right). Grid-based stats section with 1px hairline borders between cells. Generous vertical padding (`py-24 sm:py-32`).
+
+    # Typography
+
+    Suisse Intl family throughout — Book for body, Medium/Semibold for headings. Tight tracking on headlines (`tracking-[-0.015em]`). Fluid type scaling via CSS variables (`--text-h2`). High contrast between heading weight and body weight creates clear hierarchy. No serif companion; purely neo-grotesque sans system.
+
+    # Color
+
+    Semantic color naming: `ink` (text, #0a0a0a), `paper` (background, #fafafa), `line` (borders, #e5e5e5). Dark sections use `ink` background with `paper` text. Subtle ink variations: `ink-3` for muted text. No accent colors — purely monochrome with material photography providing color interest.
+
+    # Imagery
+
+    High-quality product photography: brushed stainless steel disc on gradient backgrounds, lifestyle shots of the device in use. iPhone mockups showing the companion app interface (minimal white UI with circular "Block" button). 3D renders of the hardware. Small competitor comparison images (competing products). All imagery is custom, no stock photos.
+
+    # Components
+
+    Pill-shaped buttons with rounded-full and subtle borders. Segmented progress indicators for testimonials (animated dot progress). Grid cells with 1px hairline separators. Floating photo-swap cursor follower (hidden on mobile). Minimal form inputs in footer.
+
+    # Motion
+
+    Scroll-triggered entrance animations: elements start with `opacity-0 blur-[10px] translate-y-3` and animate to visible on viewport entry. Custom easing via `--ease-custom` (cubic-bezier). Duration 700ms for reveals. Cursor-tracking photo swap on desktop (follows mouse with 200ms transition). Dot progress animation for testimonial carousel (6000ms linear).
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Matte brushed metal texture on the product itself. Soft shadows on floating elements. No glassmorphism or heavy gradients — surfaces are flat with only hairline borders defining edges.
+
+    # Craft
+
+    Custom scrollbar styling, focus states preserved for accessibility. Smooth scroll behavior (`data-scroll-behavior="smooth"`). Reduced motion support (`motion-reduce:transition-none`). Photo-swap element is `pointer-events-none` and `aria-hidden` for accessibility. Rounded-2xl on images and cards for consistent corner radius language.
+- short_id: XrG9mQUr
+  seed: |
+    # Narrative
+
+    A café site for a French-inspired coffee shop. The narrative flows from a split-screen hero (tagline + image slider) through an info bar with hours/location, a scrolling image marquee, an accordion menu with oversized section headers, an about section with origin story, a social media feed, and a contact footer. The tone is casual-French with a regional greeting. The design intent is to evoke a Parisian café in a southern U.S. city.
+
+    # Tech Stack
+
+    Webflow-built with custom CSS overrides. Uses Lenis for smooth scrolling. GSAP for animations. jQuery for DOM manipulation. CSS custom properties for theming (light/dark modes). Finsweet attributes for scroll-disabling during preloader.
+
+    # Layout
+
+    Split-screen hero: left text column (tagline + CTAs), right image slider. Info bar with three columns (illustration, hours/address, find-us CTA). Full-width image marquee. Menu section with centered accordion cards. About section with oversized header + centered text block + inline image. Social media grid at bottom. Contact section with oversized header + email/phone.
+
+    12-column CSS grid system with breakout gutters. Responsive breakpoints at 991px, 767px, 479px.
+
+    # Typography
+
+    Dual-font system: **Matter SQ** (sans-serif) for body text, navigation, and UI. **Custom display serif** (likely a transitional or didone style) for oversized section headers ("MENU", "ABOUT", "CONTACT"). The display type is extremely large, spanning nearly full width, with tight tracking. Body text uses Matter SQ at 400 weight with 1.75em line-height for captions.
+
+    Text hierarchy: display serif for section headers (huge), Matter SQ 500 for subheads, Matter SQ 400 for body.
+
+    # Color
+
+    **Teal/turquoise** brand color: approximately `#008080` or similar cyan-teal (the CSS uses `--swatch--brand`). Paired with **off-white/cream** background (`--swatch--light`) and **near-black** text (`--swatch--dark`).
+
+    Light theme: cream background, dark text, teal accents. Dark theme: dark background, light text (used for contrast sections).
+
+    Button primary: dark background, light text. Button secondary: light background, dark border, teal on hover.
+
+    # Imagery
+
+    High-quality food photography: pastries, café interiors, plated dishes. Teal/cyan color grading on photos matches brand color. Images have a warm, slightly desaturated look with teal accents. Slider shows café interior with striped awning visible through window. Food shots use shallow depth of field.
+
+    Social media feed shows three recent posts in a row.
+
+    # Components
+
+    **Buttons**: Outer wrap + inner wrap structure. Hover effect: outer padding decreases, inner padding increases (inverted padding swap). Primary: dark fill. Secondary: light fill with border.
+
+    **Accordion menu**: Checkbox-based (no JS). Plus icon rotates 45° to become X when open. Grid-template-rows animation for smooth height transition.
+
+    **Image slider**: Webflow slider with custom dot navigation. Dots are light gray, active dot is dark.
+
+    **Preloader**: SVG logo animation with opacity/transform fade-in.
+
+    # Motion
+
+    **Page load**: Preloader fades out, content reveals. Logo SVG animates in with translateY + opacity.
+
+    **Marquees**: Three continuous horizontal scrolls (text, images, social). CSS animation `scroll` 15s linear infinite. Can reverse direction with `.marquee-reverse`.
+
+    **Smooth scroll**: Lenis implementation with `scroll-behavior: auto` override.
+
+    **Accordion**: Grid-template-rows 0fr to 1fr transition. Icon rotation 0° to 45°.
+
+    **Button hover**: Padding swap animation (175ms ease). Outer padding decreases while inner padding increases.
+
+    **Slider**: Auto-advancing image carousel with dot navigation.
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Standard implementation, no special design.
+
+    # Craft
+
+    **Text selection**: Custom selection color using `--swatch--dark` background with `--swatch--light` text.
+
+    **Focus outline**: Webflow default focus states.
+
+    **Preloader**: Full-screen overlay that disables scrolling until complete (`fs-scrolldisable-element="when-visible"`).
+
+    **Responsive images**: All images use `object-fit: cover`.
+
+    **Accessibility**: Checkbox-based accordions work without JavaScript.
+- short_id: AT5oq8hX
+  seed: |
+    # Narrative
+
+    A brand designer's portfolio presenting 13 years of work (2010-2023). The narrative flows: black hero with oversized title → horizontal scrolling work gallery → split intro with conversational headline → orange kinetic type section with client list. The tone is confident, playful, and craft-focused.
+
+    # Tech Stack
+
+    Framer Site (generator meta: "Framer"). Static SSR export with breakpoint system (1440px, 1200-1439px, <1199px). Self-hosted fonts via Framer CDN.
+
+    # Layout
+
+    Full-bleed sections with dramatic color blocking. Hero is centered, viewport-filling black. Work gallery uses horizontal overflow with repeating project strips. Intro section splits: left 40% oversized display type, right 60% body copy. Orange section stacks centered type with massive kinetic headlines. No container max-width constraints — content breathes to edges.
+
+    # Typography
+
+    Dual font system: **TT Trailers Black** (display, uppercase, tight line-height 0.9em) for all headlines; **Inter** (body, 18px, letter-spacing 0.3px) for paragraphs; **Azeret Mono** (meta, uppercase) for small labels. Hero headline scales 80px → 120px → 160px across breakpoints. Display type uses negative letter-spacing (-1.5px).
+
+    # Color
+
+    High-contrast palette: **#000000** (hero background), **#ededed** (hero text), **#efefef** (intro background), **#ff8e4d** (vibrant orange section), **#0099ff** (link accent), **#111111** (body text). Single accent approach — blue for interactive, orange for energy/CTA sections.
+
+    # Imagery
+
+    Project showcase uses mixed media: mobile app mockups (sports apps, running apps), brand identity systems (craft brewery badges), outdoor advertising mockups, UI screens. Images presented in horizontal scrolling strips at ~400px height. No image borders or shadows — flat presentation against colored backgrounds.
+
+    # Components
+
+    Minimal component system. Navigation is just a centered SVG logo mark. Links use underline-on-hover pattern with color shift to #0088ff. No buttons, cards, or forms. Work gallery relies on native horizontal scroll.
+
+    # Motion
+
+    Horizontal auto-scrolling marquee for work gallery (infinite loop, multiple project strips). Kinetic type treatment in orange section — oversized words animate/scroll into view. Smooth scroll behavior site-wide. See references/motion.md for timing parameters.
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Standard implementation, no special design.
+
+    # Craft
+
+    SVG logo rendered as data-uri for crispness. Font loading uses `font-display: swap`. Pixelated image rendering on SVG elements. Custom underline hover states with color transition.
+
+    # Coherence
+
+    The brutalist display typography against stark color fields creates immediate visual authority. The horizontal scrolling gallery breaks vertical monotony and signals "more to see." Orange section interrupts the monochrome rhythm with energetic warmth. The whole site feels like a confident designer showing work without decoration.
+  references:
+        motion: "# Motion Reference\n\n## Work Gallery Marquee\n\n**What:** Horizontal infinite-scroll gallery showing project strips. Multiple rows scroll in same direction at different speeds.\n\n**Implementation:** CSS animation-driven marquee using `translateX()` transforms. Animation class: `framer-animation-1` applied to work strip containers.\n\n**Parameters:**\n- Duration: ~30-40s per cycle (inferred from Framer defaults)\n- Timing: linear\n- Direction: right-to-left (negative translateX)\n- Loop: infinite\n\n**Structure:**\n```\n.framer-18dewzk (Work-tickers container)\n  └── .framer-1hqte68 (strip wrapper)\n      └── Repeating project images ×3 (for seamless loop)\n```\n\n## Kinetic Type Section\n\n**What:** Oversized headlines in orange section that appear to scroll or animate into view.\n\n**Typography specs:**\n- Font: TT Trailers Black\n- Size: 160px desktop / 128px tablet / 80px mobile\n- Line-height: 0.9em\n- Transform: uppercase\n\n## Hover States\n\n**Links:**\n- Default: #0099ff, no underline\n- Hover: #0088ff, underline\n- Transition: native browser default\n\n## Responsive Behavior\n\n**Breakpoints:**\n- Desktop: ≥1440px (160px headlines)\n- Tablet: 1200-1439px (120px headlines)  \n- Mobile: <1199px (80px headlines, stacked layout)\n\n**Mobile adaptation:**\n- Hero text stacks to 3 lines\n- Work gallery becomes swipeable\n- Intro section stacks vertically\n- Orange section maintains centered alignment\n\n## Reusable Moves\n\n- `horizontal_marquee_gallery`
+       — Infinite\
+      \ scroll project showcase\n- `kinetic_display_type` — Oversized uppercase headlines with tight leading\n- `color_block_sections` — Full-bleed alternating background colors\n"
+- short_id: FCHUf28C
+  seed: |
+    # Narrative
+
+    An archive site for a research and design lab (operated 2015-2023) that explored sustainable living and urban futures. The hero presents the lab's mission as large centered uppercase text against pure black, with a floating 3D book element that users can drag. The narrative flows from this bold mission statement to a closure notice ("closed after almost a decade"), creating an elegiac tone for a completed institutional project.
+
+    # Tech Stack
+
+    Next.js with CSS Modules. Custom font loading via @font-face with Helvetica Now Display and Helvetica Now Text (woff2). CSS custom properties for theming with dark/light mode support via prefers-color-scheme and manual theme classes. No external animation libraries detected — motion handled via CSS transitions.
+
+    # Layout
+
+    Full-bleed dark canvas with centered content column. The hero uses a flexible column layout: 3D book element floats in the upper portion, mission statement (h0) sits centered below with max-width 47.3rem. Header is fixed height (2rem) with inline navigation. Article content uses a responsive column system that narrows with viewport: 12 columns → 10 → 8 → 6 → 4 as width increases (mobile-first inverse logic). Generous vertical spacing with --article-spacing: 4rem.
+
+    # Typography
+
+    Dual font system: Helvetica Now Display for headings (h0, h1), Helvetica Now Text for body. H0 size scales from 2.4rem (desktop) to 1.2rem (mobile). All headings use font-weight: 400 (unusual — no bold hierarchy). H0 is uppercase with line-height: 1.2. Body text is small at 0.65rem with line-height: 1.45. Text rendering optimized with text-rendering: optimizeLegibility. Custom paragraph margin calculation: calc(1.2rem - var(--text-box-trim)).
+
+    # Color
+
+    Pure monochrome system with semantic CSS variables. Dark mode (default): background #000 (--color-black), text #fff (--color-white), soft text #a1a1a1 (--color-gray-muted). Light mode inverts to white background with #656565 soft text. Container backgrounds use semi-transparent overlays: --color-dark-background-container at 8% white. Accent colors defined but subtle: yellow #fadc4b22, orange #ff662222, blue #2664d122 (all at low opacity). CTA backgrounds at 15% white in dark mode.
+
+    # Imagery
+
+    Hero features a floating 3D-rendered book with realistic lighting and shadow, positioned at an angle suggesting depth. Book has yellow cover with photographic imagery. On mobile, this becomes a different image showing interior/lab space. No other imagery on the landing view — imagery is treated as a precious object, not decoration.
+
+    # Components
+
+    Filter buttons: pill-shaped (border-radius: 0.8rem), height 1.6rem, min-width 2.8rem, with icon + text layout. Active state inverts colors (black text on white bg in dark mode). CTAs use inline style with arrow icon (↗) and underline on hover. Cookie banner is minimal with "I accept" / "Reject all" text buttons and corner radius matching the design system.
+
+    # Motion
+
+    Subtle, fast transitions: --duration: 80ms with linear easing for filter buttons. Background color transitions on hover. Reduced motion support via .reduced-motion class that sets --reduce-motion: 0s. Link hover uses opacity change via --opacity-link-hover. No entrance animations detected — page presents immediately.
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Standard implementation, no special design.
+
+    # Craft
+
+    Corner radius system: --radius: 0.4rem base, with pills at 0.8rem. Header has :has() selector for hover states — modern CSS. Gap system using --gap-x: 0.4rem and --gap-y: 0.4rem consistently applied. Focus states use default outline. Custom list styling with "−  " prefix instead of bullets.
+
+<system-reminder>
+The risk is not borrowing too little — it is subconsciously simplifying what you borrowed. Cutting corners is forbidden in any form: never replace a reference's technique, material, structure, or motion with a cheaper version of your own. Downgrades follow repeatable patterns (illustrative, not exhaustive): input-driven motion (scroll/pointer/time) → one-shot keyframes or static states; shape-language transformation (morph/clip/mask) → the cheapest properties (scale/translate/opacity); asymmetric layout rhythm (irregular grids, editorial composition) → uniform columns and full-width stacks; layered material (blend/texture/depth) → flat single-layer fills; bespoke vessels (framing devices, illustrated components) → default cards and pills; choreographed sequences (staged, multi-step, gated) → single triggers or fakes; typographic systems (pairing/scale/font features) → swapping the font-family; styled components → library-default skins. If your version is simpler than the reference's, that is a downgrade. Implement at the reference's fidelity.
+</system-reminder>

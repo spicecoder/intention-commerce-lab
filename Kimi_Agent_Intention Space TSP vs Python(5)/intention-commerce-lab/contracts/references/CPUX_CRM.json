@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "commerce-browser-reference/0.1",
+  "status": "development-reference-not-go-runtime-manifest",
+  "artifactType": "browser-reference-cpux",
+  "appId": "APP_CommerceBrowser",
+  "intentionSpaceId": "IS_CommerceReference",
+  "cpuxId": "CPUX_CRM",
+  "fieldId": "FIELD_CRM",
+  "members": [
+    "IC_CRMStart",
+    "IC_CRMRecommend",
+    "IC_CRMClose"
+  ],
+  "startPolicy": "lazy-on-admitted-signal",
+  "scheduling": "exact-ic-admission-with-durable-claim",
+  "fieldPolicy": {
+    "ingress": "fifo",
+    "extraction": "copy",
+    "repeat": "new-admitted-occurrence-only"
+  },
+  "completion": "explicit-member-terminal-and-no-pending-work",
+  "ics": [
+    {
+      "icId": "IC_CRMStart",
+      "cpuxId": "CPUX_CRM",
+      "dnId": "DN_CRMStart",
+      "holder": {
+        "input": "S_StartCustomer",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_CustomerContext",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_CustomerContextRequested",
+        "requiredPulses": [
+          "customer_id"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_StartCustomer"
+      }
+    },
+    {
+      "icId": "IC_CRMRecommend",
+      "cpuxId": "CPUX_CRM",
+      "dnId": "DN_CRMRecommend",
+      "holder": {
+        "input": "S_StockAssessed",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_RecommendationsReady",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_CustomerStockAssessed",
+        "requiredPulses": [
+          "customer_id",
+          "customer_profile",
+          "inventory_rows"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_StockAssessed"
+      }
+    },
+    {
+      "icId": "IC_CRMClose",
+      "cpuxId": "CPUX_CRM",
+      "dnId": "DN_CRMClose",
+      "holder": {
+        "input": "S_OrderCompleted",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_CustomerHistoryUpdated",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_OrderShipmentCompleted",
+        "requiredPulses": [
+          "order_id",
+          "customer_id",
+          "sku",
+          "quantity",
+          "unit_price_cents",
+          "total_cents",
+          "currency",
+          "shipping_address",
+          "shipment_id",
+          "tracking_id"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_OrderCompleted"
+      }
+    }
+  ]
+}

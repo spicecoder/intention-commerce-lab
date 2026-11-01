@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "commerce-browser-reference/0.1",
+  "status": "development-reference-not-go-runtime-manifest",
+  "artifactType": "browser-reference-cpux",
+  "appId": "APP_CommerceBrowser",
+  "intentionSpaceId": "IS_CommerceReference",
+  "cpuxId": "CPUX_Shipping",
+  "fieldId": "FIELD_Shipping",
+  "members": [
+    "IC_ShippingPrepare",
+    "IC_ShippingDispatch"
+  ],
+  "startPolicy": "lazy-on-admitted-signal",
+  "scheduling": "exact-ic-admission-with-durable-claim",
+  "fieldPolicy": {
+    "ingress": "fifo",
+    "extraction": "copy",
+    "repeat": "new-admitted-occurrence-only"
+  },
+  "completion": "explicit-member-terminal-and-no-pending-work",
+  "ics": [
+    {
+      "icId": "IC_ShippingPrepare",
+      "cpuxId": "CPUX_Shipping",
+      "dnId": "DN_ShippingPrepare",
+      "holder": {
+        "input": "S_OrderDecision",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_ShipmentReady",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_OrderAcceptanceDecided",
+        "requiredPulses": [
+          "order_id",
+          "customer_id",
+          "sku",
+          "quantity",
+          "unit_price_cents",
+          "total_cents",
+          "currency",
+          "shipping_address",
+          "reservation_id",
+          "order_status",
+          "failure_reason"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_OrderDecision"
+      }
+    },
+    {
+      "icId": "IC_ShippingDispatch",
+      "cpuxId": "CPUX_Shipping",
+      "dnId": "DN_ShippingDispatch",
+      "holder": {
+        "input": "S_DispatchShipment",
+        "transformation": "none"
+      },
+      "reflector": {
+        "terminal": "S_DispatchDecision",
+        "error": "S_ApplicationError",
+        "rtm": "identity"
+      },
+      "activation": {
+        "requiredIntention": "I_ShipmentDispatchRequested",
+        "requiredPulses": [
+          "shipment_id"
+        ],
+        "scope": "exact-route-occurrence",
+        "inputProjection": "S_DispatchShipment"
+      }
+    }
+  ]
+}
